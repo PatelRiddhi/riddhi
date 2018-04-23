@@ -1,0 +1,26 @@
+Controller
+
+$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('username', 'Username', 'strip_tags|htmlentities|trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'htmlspecialchars|trim|required|valid_email');
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('form');
+		}
+		else
+		{
+					echo '<pre>';
+					echo print_r($this->input->post());
+					die;
+		}
+    
+    view
+    
+    First name:<br>
+  <?php echo form_error('username'); ?>
+  <input type="text" name="username" value="<?php echo set_value('username'); ?>" >
+  <br>
+  Last name:<br>
+  <?php echo form_error('email'); ?>
+  <input type="email" name="email" value="<?php echo set_value('email'); ?>" >
